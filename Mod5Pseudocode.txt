@@ -1,0 +1,40 @@
+BEGIN PROGRAM
+
+SET inputFile - "CSC450_CT5_mod5.txt"
+SET reverseFile - "CSC450-mod5-reverse.txt"
+
+IF inputFile does not exist THEN
+  DISPLAY error message
+  STOP program
+END IF
+
+DISPLAY prompt asking user to enter text
+DISPLAY instruction to type "END" to finish input
+
+SET userInput - empty string
+
+WHILE user input is not equal to "END"
+  READ line from user
+  IF line is not "END" THEN
+    ADD line and newline character to userInput
+  END IF
+END WHILE
+
+OPEN inputFile in append mode
+WRITE separator line to inputFile
+WRITE userInput to inputFile
+CLOSE inputFile
+
+OPEN inputFile in read mode
+READ entire contents of inputFile into fileContents
+CLOSE inputFile
+
+REVERSE all characters in fileContents
+
+OPEN reverseFile in write mode
+WRITE reversed fileContents to reverseFile
+CLOSE reverseFile
+
+DISPLAY confirmation message
+
+END PROGRAM
